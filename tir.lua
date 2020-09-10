@@ -1,6 +1,6 @@
 local tirModel = {}
 
-function tirModel:Create(pName, pNameFile, pTileWidth, pTileHeight, pWho, pType, pMap)
+function tirModel:Create(pName, pNameFile, x, y, pWho, pType, pMap)
 
     local tir = {}
     print("Dans le tirModel")
@@ -11,8 +11,8 @@ function tirModel:Create(pName, pNameFile, pTileWidth, pTileHeight, pWho, pType,
     --print(pTileHeight)
     --print(pMap)
   
-    tir.posX = 0
-    tir.posY = 0
+    tir.posX = x
+    tir.posY = y
     tir.name = pName
     tir.oX = 0
     tir.oY = 0
@@ -22,6 +22,8 @@ function tirModel:Create(pName, pNameFile, pTileWidth, pTileHeight, pWho, pType,
     tir.style = false
     tir.listImages = {}
     tir.listEffet = {}
+    tir.who = pWho
+    tir.delete = false
   
     local imageTempo = love.graphics.newImage(pNameFile)
     table.insert(tir.listImages, imageTempo)
@@ -31,6 +33,8 @@ function tirModel:Create(pName, pNameFile, pTileWidth, pTileHeight, pWho, pType,
       tir.frames = tir.tileSheet.frames
       tir.style = true
     end
+
+    return tir
 
 end
 

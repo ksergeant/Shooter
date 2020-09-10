@@ -122,6 +122,28 @@ function spriteManager:FermeLesMoteurs(pSpriteName)
 
 end
 
+function spriteManager:Localisation(pSpriteName)
+
+  local posXtempo = {}
+  local posYtempo = {}
+
+  for i = 1, #spriteManager.list_sprites do
+      
+    local s = spriteManager.list_sprites[i]
+
+    if pSpriteName == s.name then 
+     
+      posXtempo = s:getPositionX()
+      posYtempo = s:getPositionY()
+      
+    end
+
+  end
+
+  return posXtempo, posYtempo
+
+end
+
 function spriteManager:Update(dt)
   
     if #spriteManager.list_sprites~=nil then

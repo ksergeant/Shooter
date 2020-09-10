@@ -35,6 +35,19 @@ function spriteModel:Create(pName, pNameFile, pTileWidth, pTileHeight, pMap)
     sprite.style = true
   end
 
+
+  function sprite:getPositionX()
+   
+    return self.posX
+
+  end
+
+  function sprite:getPositionY()
+   
+    return self.posY
+
+  end
+
   function sprite:anime()
   
     if sprite.currentImage < #sprite.frames then 
@@ -47,23 +60,45 @@ function spriteModel:Create(pName, pNameFile, pTileWidth, pTileHeight, pMap)
   end
   
   function sprite:DeplaceGauche()
-    self.posX = self.posX - 6
+
+    if self.posX > 6 then
+      self.posX = self.posX - 6
+
+    else
+      self.posX = 6
+    end
     
   end
 
   function sprite:DeplaceDroite()
-    self.posX = self.posX + 6
+
+    if self.posX < love.graphics.getWidth() - 110 then
+      self.posX = self.posX + 6
+
+    else
+      self.posX = love.graphics.getWidth() - 110
+    end
     
   end
 
   function sprite:DeplaceHaut()
-    self.posY = self.posY - 6
-    
+
+    if self.posY > 6 then 
+      self.posY = self.posY - 6
+    else
+      self.posY = 6
+    end
+
   end
 
   function sprite:DeplaceBas()
-    self.posY = self.posY + 6
-    
+
+    if self.posY < love.graphics.getHeight() - 110 then
+      self.posY = self.posY + 6
+    else
+      self.posY = love.graphics.getHeight() - 110
+    end
+
   end
 
   function sprite:MoteurOn()

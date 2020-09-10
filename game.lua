@@ -27,14 +27,12 @@ function game:Load()
   
   game.mySpriteManager:SettingSprite("Player", 700, 600, 0, 0, 1, 1)
 
-
-  
-
 end
 
 function game:Update(dt)
   
   self.mySpriteManager:Update(dt)
+  self.myTirManager:Update(dt)
 
   if love.keyboard.isDown("left") then
 
@@ -57,22 +55,20 @@ function game:Update(dt)
     self.mySpriteManager:FermeLesMoteurs("Player")
 
   end
-
-  if love.keyboard.isDown("space") then 
-
-    self.myTirManager:CreateTir("tir"..tostring(self.nbrTirTirer), "Shot_1_002.png", 100, 100, "Player", "PlayerStandard")
-    self.nbrTirTirer = self.nbrTirTirer + 1
     
-  end
-
 end
 
 function game:Draw()
   
   love.graphics.draw(game.background,0,0,0,0.8,0.8,0,0)
   
-  game.mySpriteManager:Draw()
+  self.mySpriteManager:Draw()
+  self.myTirManager:Draw()
   
+  love.graphics.print("Nombre de tirs:"..tostring(#self.myTirManager.list_tirs)
+  .." Nombre de sprite:"..tostring(#self.mySpriteManager.list_sprites)
+  
+  ,0,0)
 end
 
 return game
