@@ -4,18 +4,11 @@ spriteManager.list_sprites = {}
 
 local spriteModel = require("sprite")
 
-function spriteManager:CreateSprite(pName, pNameFile, pTileWidth, pTileHeight, pMap)
+function spriteManager:CreateSprite(pName, pNameFile, pPosX, pPosY, pTypeSprite)
   
   local spriteTempo = {}
-  print("Dans le Manager")
 
-  --print(pName)
-  --print (pNameFile)
-  --print (pTileWidth)
-  --print (pTileHeight)
-  --print (pMap)
-
-  spriteTempo = spriteModel:Create(pName, pNameFile, pTileWidth, pTileHeight, pMap)
+  spriteTempo = spriteModel:Create(pName, pNameFile, pPosX, pPosY, pTypeSprite)
   
   table.insert(spriteManager.list_sprites, spriteTempo)
   
@@ -74,76 +67,6 @@ function spriteManager:AjoutImageSprite(pSpriteName, pNameFile, pExtention, pLis
 
 end
 
-function spriteManager:Deplace(pSpriteName, pSens)
-
-  for i = 1, #spriteManager.list_sprites do
-      
-    local s = spriteManager.list_sprites[i]
-
-    if pSpriteName == s.name then 
-     
-      if pSens == "left" then
-        s:DeplaceGauche()
-        s:MoteurOn()
-      end
-
-      if pSens == "right" then
-        s:DeplaceDroite()
-        s:MoteurOn()
-      end
-
-      if pSens == "up" then
-        s:DeplaceHaut()
-        s:MoteurOn()
-      end
-
-      if pSens == "down" then
-        s:DeplaceBas()
-        s:MoteurOn()
-      end
-
-    end
-  end
-
-end
-
-function spriteManager:FermeLesMoteurs(pSpriteName)
-
-  for i = 1, #spriteManager.list_sprites do
-      
-    local s = spriteManager.list_sprites[i]
-
-    if pSpriteName == s.name then 
-     
-      s:MoteurOff()
-    
-    end
-  end
-
-end
-
-function spriteManager:Localisation(pSpriteName)
-
-  local posXtempo = {}
-  local posYtempo = {}
-
-  for i = 1, #spriteManager.list_sprites do
-      
-    local s = spriteManager.list_sprites[i]
-
-    if pSpriteName == s.name then 
-     
-      posXtempo = s:getPositionX()
-      posYtempo = s:getPositionY()
-      
-    end
-
-  end
-
-  return posXtempo, posYtempo
-
-end
-
 function spriteManager:Update(dt)
   
     if #spriteManager.list_sprites~=nil then
@@ -151,10 +74,11 @@ function spriteManager:Update(dt)
       for i = 1, #spriteManager.list_sprites do
       
         local s = spriteManager.list_sprites[i]
-        
-       -- s.anime()
-       -- s.move() 
-        
+      
+        print("Dans Sprite Update")
+        print(s.name)
+        print("PosX:"..tostring(s.posX))
+        print("PosY:"..tostring(s.posY))
       end
       
     end
@@ -188,16 +112,6 @@ function spriteManager:Draw()
         0,
         0.1,
         0.1)
-
-        if s.engine == true then
-          love.graphics.draw(
-            s.listEffet[s.currentImage], 
-            s.posX +44.5, 
-            s.posY+74,
-            0,
-            0.2,
-            0.2)
-        end
 
       end
                         

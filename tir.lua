@@ -1,16 +1,12 @@
 local tirModel = {}
 
+local spriteManager = require("spriteManager")
+
 function tirModel:Create(pName, pNameFile, x, y, pWho, pType, pMap)
 
     local tir = {}
     print("Dans le tirModel")
-  
-    --print(pName)
-    --print(pNameFile)
-    --print(pTileWidth)
-    --print(pTileHeight)
-    --print(pMap)
-  
+
     tir.posX = x
     tir.posY = y
     tir.name = pName
@@ -27,12 +23,6 @@ function tirModel:Create(pName, pNameFile, x, y, pWho, pType, pMap)
   
     local imageTempo = love.graphics.newImage(pNameFile)
     table.insert(tir.listImages, imageTempo)
-  
-    if (pMap ~=nil) then
-      tir.tileSheet = tileSheetModel:CreateTileSheet(pNameFile, pTileWidth, pTileHeight, pMap)
-      tir.frames = tir.tileSheet.frames
-      tir.style = true
-    end
 
     return tir
 

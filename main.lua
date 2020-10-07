@@ -27,16 +27,6 @@ end
 
 function love.keypressed(key)
   
-  if key == "space" then
-
-    local x,y = myGame.mySpriteManager:Localisation("Player")
-
-    print("X:"..tostring(x))
-    print("Y:"..tostring(y))
-
-    myGame.myTirManager:CreateTir("tir"..tostring(myGame.nbrTirTirer), "Shot_1_002.png", x-5, y -168, "Player", "PlayerStandard")
-    myGame.nbrTirTirer = myGame.nbrTirTirer + 1
-
-  end
+  myGame.myKeyManager:Update(key, myGame)
   
 end

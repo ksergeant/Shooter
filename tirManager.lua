@@ -36,7 +36,7 @@ function tirManager:Update(dt)
            end
       end
       
-      print(#tirManager)
+     -- print(#tirManager)
     end
         
 end
